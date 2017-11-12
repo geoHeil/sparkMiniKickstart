@@ -25,11 +25,16 @@ parallelExecution in Test := false
 
 lazy val spark = "2.2.0"
 resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
+resolvers += "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/maven"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % spark % "provided",
   "org.apache.spark" %% "spark-sql" % spark % "provided",
-  "org.apache.spark" %% "spark-hive" % spark % "provided",
   "com.typesafe" % "config" % "1.3.1",
+  //  "graphframes" % "graphframes" % "0.5.0-spark2.1-s_2.11",
+  //  "org.apache.spark" %% "spark-hive" % spark % "provided",
+  //  "org.apache.spark" %% "spark-graphx" % spark % "provided",
+  //  "org.apache.spark" %% "spark-mllib" % spark % "provided",
+  //  "org.apache.spark" %% "spark-streaming" % spark % "provided",
   "com.holdenkarau" %% "spark-testing-base" % s"${spark}_0.8.0" % "test"
 )
 
