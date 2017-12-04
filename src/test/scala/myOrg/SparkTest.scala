@@ -1,7 +1,9 @@
+// Copyright (C) 2017-2018 geoHeil
+
 package myOrg
 
-import com.holdenkarau.spark.testing.{ DatasetSuiteBase, SharedSparkContext }
-import org.scalatest.{ FlatSpec, Matchers }
+import com.holdenkarau.spark.testing.{DatasetSuiteBase, SharedSparkContext}
+import org.scalatest.{FlatSpec, Matchers}
 
 class SparkTest extends FlatSpec with Matchers with SharedSparkContext with DatasetSuiteBase {
 

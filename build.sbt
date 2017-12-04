@@ -6,6 +6,7 @@ scalaVersion := "2.11.8"
 scalacOptions ++= Seq(
   "-target:jvm-1.8",
   "-encoding", "UTF-8",
+  "-feature",
   "-unchecked",
   "-deprecation",
   "-Xfuture",
@@ -26,15 +27,20 @@ parallelExecution in Test := false
 lazy val spark = "2.2.0"
 resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 resolvers += "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/maven"
+//resolvers += Resolver.mavenLocal
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-core" % spark % "provided",
   "org.apache.spark" %% "spark-sql" % spark % "provided",
-  "com.typesafe" % "config" % "1.3.1",
+  "org.apache.spark" %% "spark-hive" % spark % "provided",
   //  "graphframes" % "graphframes" % "0.5.0-spark2.1-s_2.11",
-  //  "org.apache.spark" %% "spark-hive" % spark % "provided",
   //  "org.apache.spark" %% "spark-graphx" % spark % "provided",
   //  "org.apache.spark" %% "spark-mllib" % spark % "provided",
   //  "org.apache.spark" %% "spark-streaming" % spark % "provided",
+
+  //  typesafe configuration
+  "com.github.pureconfig" %% "pureconfig" % "0.8.0",
+
+  // testing
   "com.holdenkarau" %% "spark-testing-base" % s"${spark}_0.8.0" % "test"
 )
 
@@ -57,22 +63,16 @@ assemblyMergeStrategy in assembly := {
 
 initialCommands in console :=
   """
-    |import java.io.File
+    |import myOrg.utils.SparkBaseRunner
+    |import org.slf4j.LoggerFactory
+    |import org.apache.spark.sql.{ DataFrame, SparkSession }
+    |import org.apache.spark.sql.functions._
+    |import myOrg.utils.{SampleConfig, ConfigurationUtils}
     |
-    |import org.apache.spark.SparkConf
-    |import org.apache.spark.sql.{DataFrame, SparkSession}
-    |
-    |val conf: SparkConf = new SparkConf()
-    |    .setAppName("exampleSQL")
-    |    .setMaster("local[*]")
-    |    .set("spark.serializer", "org.apache.spark.serializer.KryoSerializer")
-    |
-    |  val spark: SparkSession = SparkSession
-    |    .builder()
-    |    .config(conf)
-    |    .getOrCreate()
-    |
-    |  import spark.implicits._
+    |val logger = LoggerFactory.getLogger(this.getClass)
+    |val c = ConfigurationUtils.loadConfiguration[SampleConfig]
+    |val spark = ConfigurationUtils.createSparkSession("console")
+    |import spark.implicits._
   """.stripMargin
 
 mainClass := Some("myOrg.SparkJob")

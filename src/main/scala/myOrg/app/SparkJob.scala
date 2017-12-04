@@ -1,15 +1,15 @@
-package myOrg
+// Copyright (C) 2017-2018 geoHeil
+package myOrg.app
 
-import myOrg.utils.SparkBaseRunner
+import myOrg.utils.{ SampleConfig, SparkBaseRunner }
 import org.apache.spark.sql.{ DataFrame, SparkSession }
 
 object SparkJob extends SparkBaseRunner {
-  logger.info(getOptionalString("foo", "somethingElse"))
-  logger.info(getOptionalString("notSet", "somethingElse"))
+  SampleConfig
   val spark = createSparkSession(this.getClass.getName)
 
-  // TODO businesss logic here
   import spark.implicits._
+  // TODO businesss logic here
 
   val df = Seq(
     (0, "A", "B", "C", "D"),

@@ -1,3 +1,5 @@
+// Copyright (C) 2017 geoHeil
+
 package myOrg
 
 import org.scalatest.{ FlatSpec, Matchers }
