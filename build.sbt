@@ -1,7 +1,7 @@
 name := "sparkMiniSample"
 organization := "myOrg"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.11.12"
 
 scalacOptions ++= Seq(
   "-target:jvm-1.8",
