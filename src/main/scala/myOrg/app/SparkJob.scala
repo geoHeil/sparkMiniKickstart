@@ -1,11 +1,10 @@
 // Copyright (C) 2017-2018 geoHeil
 package myOrg.app
 
-import myOrg.utils.{ SampleConfig, SparkBaseRunner }
+import myOrg.utils.SparkBaseRunner
 import org.apache.spark.sql.{ DataFrame, SparkSession }
 
 object SparkJob extends SparkBaseRunner {
-  SampleConfig
   val spark = createSparkSession(this.getClass.getName)
 
   import spark.implicits._
