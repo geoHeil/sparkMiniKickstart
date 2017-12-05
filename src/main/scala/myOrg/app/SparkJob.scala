@@ -10,6 +10,10 @@ object SparkJob extends SparkBaseRunner {
   import spark.implicits._
   // TODO businesss logic here
 
+  println("*****************************")
+  println(c.foo)
+  println("*****************************")
+
   val df = Seq(
     (0, "A", "B", "C", "D"),
     (1, "A", "B", "C", "D"),
