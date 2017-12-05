@@ -52,6 +52,7 @@ run in Compile := Defaults.runTask(fullClasspath in Compile, mainClass.in(Compil
 assemblyMergeStrategy in assembly := {
   //  case PathList("com", "esotericsoftware", xs@_*) => MergeStrategy.last
   case PathList("META-INF", "MANIFEST.MF") => MergeStrategy.discard
+  case PathList("rootdoc.txt") => MergeStrategy.discard
   case _ => MergeStrategy.deduplicate
 }
 
