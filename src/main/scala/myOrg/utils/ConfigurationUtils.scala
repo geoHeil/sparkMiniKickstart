@@ -40,6 +40,7 @@ object ConfigurationUtils {
       .setIfMissing("spark.executor.extraJavaOptions", "-XX:+UseG1GC")
       .setIfMissing("spark.memory.offHeap.enabled", "true")
       .setIfMissing("spark.memory.offHeap.size", "1g")
+      .setIfMissing("spark.yarn.executor.memoryOverhead", "1g")
     //  .registerKryoClasses(Array(
     //  //TODO register all used classes here, force Kryo serialization and register all classes
     //  classOf[PortableDataStream]))

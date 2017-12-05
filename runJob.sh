@@ -7,7 +7,7 @@ sbt assembly
 
 echo "################## Job 1 ###############################################"
 spark-submit --verbose \
-        --class myOrg.SparkJob \
+        --class myOrg.app.SparkJob \
         --master "local[2]" \
         --driver-memory=500m \
         --conf spark.default.parallelism=4 \
@@ -18,7 +18,7 @@ echo "################## Job 1  big############################################"
 error
 # TODO set some fitting values
 spark-submit \
-    --class myOrg.SparkJob \
+    --class myOrg.app.SparkJob \
     --master yarn \
     --deploy-mode cluster \
     --keytab /etc/security/keytabs/service_stage0.service.keytab \

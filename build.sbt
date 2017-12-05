@@ -56,9 +56,9 @@ assemblyMergeStrategy in assembly := {
   case _ => MergeStrategy.deduplicate
 }
 
-//assemblyShadeRules in assembly := Seq(
-//  ShadeRule.rename("com.google.**" -> "shadedguava.@1").inAll
-//)
+assemblyShadeRules in assembly := Seq(
+  ShadeRule.rename("com.google.**" -> "shadedguava.@1").inAll
+)
 
 //test in assembly := {}
 
@@ -76,4 +76,4 @@ initialCommands in console :=
     |import spark.implicits._
   """.stripMargin
 
-mainClass := Some("myOrg.SparkJob")
+mainClass := Some("myOrg.app.SparkJob")
