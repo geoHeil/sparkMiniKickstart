@@ -25,6 +25,7 @@ javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:+CMSClassUnloadingEnabled")
 parallelExecution in Test := false
 
 lazy val spark = "2.2.0"
+lazy val pureconfigVersion = "0.8.0"
 resolvers += "Artima Maven Repository" at "http://repo.artima.com/releases"
 resolvers += "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/maven"
 //resolvers += Resolver.mavenLocal
@@ -38,7 +39,7 @@ libraryDependencies ++= Seq(
   //  "org.apache.spark" %% "spark-streaming" % spark % "provided",
 
   //  typesafe configuration
-  "com.github.pureconfig" %% "pureconfig" % "0.8.0",
+  "com.github.pureconfig" %% "pureconfig" % pureconfigVersion,
 
   // testing
   "com.holdenkarau" %% "spark-testing-base" % s"${spark}_0.8.0" % "test"
@@ -56,7 +57,13 @@ assemblyMergeStrategy in assembly := {
   case _ => MergeStrategy.deduplicate
 }
 
-assemblyShadeRules in assembly := Seq(ShadeRule.rename("shapeless.**" -> "new_shapeless.@1").inAll)
+//assemblyShadeRules in assembly := Seq(ShadeRule.rename("shapeless.**" -> "new_shapeless.@1").inAll)
+assemblyShadeRules in assembly := Seq(
+  ShadeRule.rename("shapeless.**" -> "shadeshapless.@1")
+    .inLibrary("com.chuusai" % "shapeless_2.11" % "2.3.2")
+    .inLibrary("com.github.pureconfig" %% "pureconfig" % pureconfigVersion)
+    .inProject
+)
 
 //test in assembly := {}
 
