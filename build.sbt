@@ -56,9 +56,7 @@ assemblyMergeStrategy in assembly := {
   case _ => MergeStrategy.deduplicate
 }
 
-assemblyShadeRules in assembly := Seq(
-  ShadeRule.rename("com.google.**" -> "shadedguava.@1").inAll
-)
+assemblyShadeRules in assembly := Seq(ShadeRule.rename("shapeless.**" -> "new_shapeless.@1").inAll)
 
 //test in assembly := {}
 
