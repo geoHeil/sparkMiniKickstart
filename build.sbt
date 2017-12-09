@@ -61,7 +61,8 @@ assemblyMergeStrategy in assembly := {
 assemblyShadeRules in assembly := Seq(
   ShadeRule.rename("shapeless.**" -> "shadeshapless.@1")
     .inLibrary("com.chuusai" % "shapeless_2.11" % "2.3.2")
-    .inLibrary("com.github.pureconfig" %% "pureconfig" % pureconfigVersion)
+    .inLibrary("com.github.pureconfig" % "pureconfig_2.11" % pureconfigVersion)
+    .inLibrary("com.github.pureconfig" % "pureconfig-macros_2.11" % pureconfigVersion)
     .inProject
 )
 
