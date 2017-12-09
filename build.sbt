@@ -38,7 +38,8 @@ libraryDependencies ++= Seq(
   //  "org.apache.spark" %% "spark-streaming" % spark % "provided",
 
   //  typesafe configuration
-  "com.github.pureconfig" %% "pureconfig" % "0.8.0",
+  "com.iheart" %% "ficus" % "1.4.3",
+//  "com.github.pureconfig" %% "pureconfig" % "0.8.0",
 
   // testing
   "com.holdenkarau" %% "spark-testing-base" % s"${spark}_0.8.0" % "test"

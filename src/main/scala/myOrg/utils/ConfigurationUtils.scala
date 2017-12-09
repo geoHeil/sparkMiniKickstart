@@ -2,18 +2,19 @@
 
 package myOrg.utils
 
+import com.typesafe.config.{ Config, ConfigFactory }
 import org.apache.spark.SparkConf
 import org.apache.spark.serializer.KryoSerializer
 import org.apache.spark.sql.SparkSession
-import pureconfig._
+import net.ceedubs.ficus.Ficus._
+import net.ceedubs.ficus.readers.ValueReader
+import net.ceedubs.ficus.readers.namemappers.implicits.hyphenCase
 
 object ConfigurationUtils {
 
-  def loadConfiguration[T <: Product](implicit reader: ConfigReader[T]): T = {
-    loadConfig[T] match {
-      case Right(s) => s
-      case Left(l) => throw new ConfigurationInvalidException(s"Failed to start. There is a problem with the configuration: $l")
-    }
+  def loadConfiguration[T: ValueReader](): T = {
+    val config: Config = ConfigFactory.load()
+    config.as[T]
   }
 
   def createSparkSession(appName: String): SparkSession = {

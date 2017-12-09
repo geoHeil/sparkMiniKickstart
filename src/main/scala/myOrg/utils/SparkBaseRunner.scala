@@ -4,6 +4,7 @@ package myOrg.utils
 
 import org.apache.spark.sql.SparkSession
 import org.slf4j.LoggerFactory
+import net.ceedubs.ficus.readers.ArbitraryTypeReader._
 
 trait SparkBaseRunner extends App {
 
